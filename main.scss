@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 2rem;
 }
 html{
     height: 100%;
@@ -28,7 +28,7 @@ html{
         padding: 1rem;
         box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.2);
         background: rgba($color: yellow, $alpha: 0.4);
-        width: 17.5rem;
+        width: 16.72rem;
         margin: 0.25rem;
         height: 4rem;
         border-radius: 0.25rem;
@@ -53,24 +53,17 @@ html{
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    padding: 0.5rem;
-                    margin: 0.25rem;
+                    margin: 0.12rem;
                     height: 4rem;
                     width: 4rem;
                     box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.2);
                     background: rgba($color: yellow, $alpha: 0.4);
-                    border-radius: 0.25rem;
+                    border-radius: 50%;
                     cursor: pointer;
                     user-select: none;
                     &:active{
                         background: transparent;
                     }
-                }
-            }
-            .num0{
-                #zero{
-                    width: 8.5rem;
-                    padding: 1rem;
                 }
             }
         }
@@ -86,8 +79,7 @@ html{
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0.5rem;
-            margin: 0.25rem;
+            margin: 0.12rem;
             height: 4rem;
             width: 4rem;
             box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.2);

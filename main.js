@@ -17,10 +17,10 @@ const minus = document.getElementById('minus');
 const divide = document.getElementById('divide');
 const multiply = document.getElementById('multiply');
 const equals = document.getElementById('equals');
+const reset = document.getElementById('reset');
 
 const defaultValue = 0
 let calculation = defaultValue
-let calculationModification
 let calculationText = ""
 
 one.addEventListener('click', (e) => {
@@ -95,12 +95,33 @@ multiply.addEventListener('click', (e) => {
     display.textContent = calculationText.replaceAll(",", "")
 });
 
+reset.addEventListener('click', (e) => {
+    numCollector = ""
+    lastOperator = ""
+    display.textContent = "0"
+    calculation = defaultValue
+    calculationText = ""
+});
+
+const lastOperatorAction = (calculation, operator, collector) => {
+    if (operator === "+") {
+        calculation += parseInt(collector)
+    } else if (operator === "-") {
+        calculation -= parseInt(collector)
+    } else if (operator === "/") {
+        calculation /= parseInt(collector)
+    } else if (operator === "x") {
+        calculation *= parseInt(collector)
+    }
+    return calculation
+}
+
 equals.addEventListener('click', (e) => {
     calculationText = calculationText.split(",")
     let numCollector = ""
     let lastOperator = ""
     for (let i = 0; i < calculationText.length; i++) {
-        if (parseInt(calculationText[i])) {
+        if (parseInt(calculationText[i]) || calculationText[i]=="0") {
             numCollector += calculationText[i]
         } else if (calculationText[i] === "+"){
             lastOperator = "+"
@@ -108,7 +129,7 @@ equals.addEventListener('click', (e) => {
                 calculation = parseInt(numCollector)
                 numCollector = ""
             } else {
-                calculation += parseInt(numCollector)
+                lastOperatorAction(calculation, "+", numCollector)
                 numCollector = ""
             }
         } else if (calculationText[i] === "-"){
@@ -117,7 +138,7 @@ equals.addEventListener('click', (e) => {
                 calculation = parseInt(numCollector)
                 numCollector = ""
             } else {
-                calculation -= parseInt(numCollector)
+                lastOperatorAction(calculation, "-", numCollector)
                 numCollector = ""
             }
         } else if (calculationText[i] === "/"){
@@ -126,7 +147,7 @@ equals.addEventListener('click', (e) => {
                 calculation = parseInt(numCollector)
                 numCollector = ""
             } else {
-                calculation /= parseInt(numCollector)
+                lastOperatorAction(calculation, "/", numCollector)
                 numCollector = ""
             }
         } else if (calculationText[i] === "x"){
@@ -135,7 +156,7 @@ equals.addEventListener('click', (e) => {
                 calculation = parseInt(numCollector)
                 numCollector = ""
             } else {
-                calculation *= parseInt(numCollector)
+                lastOperatorAction(calculation, "x", numCollector)
                 numCollector = ""
             }
         }
