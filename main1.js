@@ -20,10 +20,10 @@ const equals = document.getElementById('equals');
 const reset = document.getElementById('reset');
 
 
-let calculation = 0
 let lastOperator = ""
 let leftNumber = ""
 let calculationText = ""
+
 
 one.addEventListener('click', (e) => {
     calculationText += "1"
@@ -76,27 +76,6 @@ zero.addEventListener('click', (e) => {
 });
 
 
-const addNumbers = (leftNumber, rightNumber) => {
-    return leftNumber + rightNumber
-}
-
-const subtractNumbers = (leftNumber, rightNumber) => {
-    return leftNumber - rightNumber
-}
-
-const divideNumbers = (leftNumber, rightNumber) => {
-    return leftNumber / rightNumber
-}
-
-const multiplyNumbers = (leftNumber, rightNumber) => {
-    return leftNumber * rightNumber
-}
-
-const calcDisplay = (leftSide=0, operator="", rightSide="") => {
-    calculationText += rightSide
-    display.textContent = String(leftSide) + operator + calculationText
-}
-
 reset.addEventListener('click', (e) => {
     display.textContent = "0"
     lastOperator = ""
@@ -104,146 +83,91 @@ reset.addEventListener('click', (e) => {
     calculationText = ""
 });
 
+const displayContent = (operator, logic) => {
+    if (logic === "equals") {
+        leftNumber = parseInt(calculationText)
+    } else if (logic === "addition"){
+        leftNumber += parseInt(calculationText)
+    } else if (logic === "subtraction"){
+        leftNumber -= parseInt(calculationText)
+    }  else if (logic === "divide"){
+        leftNumber /= parseInt(calculationText)
+    } else if (logic === "multiply"){
+        leftNumber *= parseInt(calculationText)
+    }
+    lastOperator = operator
+    calculationText = ""
+    if (lastOperator === "") {
+        calculationText = leftNumber
+        leftNumber = ""
+    }
+    display.textContent = String(leftNumber) + lastOperator + calculationText
+}
+
 plus.addEventListener('click', (e) => {
     if (lastOperator === "") {
-        leftNumber = parseInt(calculationText)
-        lastOperator = "+"
-        calculationText = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("+", "equals")
     } else if (lastOperator === "+") {
-        leftNumber += parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "+"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("+", "addition")
     } else if (lastOperator === "-") {
-        leftNumber -= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "+"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("+", "subtraction")
     } else if (lastOperator === "/") {
-        leftNumber /= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "+"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("+", "divide")
     } else if (lastOperator === "x") {
-        leftNumber *= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "+"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("+", "multiply")
     }
 });
 
 minus.addEventListener('click', (e) => {
     if (lastOperator === "") {
-        leftNumber = parseInt(calculationText)
-        lastOperator = "-"
-        calculationText = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("-", "equals")
     } else if (lastOperator === "+") {
-        leftNumber += parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "-"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("-", "addition")
     } else if (lastOperator === "-") {
-        leftNumber -= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "-"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("-", "subtraction")
     } else if (lastOperator === "/") {
-        leftNumber /= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "-"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("-", "divide")
     } else if (lastOperator === "x") {
-        leftNumber *= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "-"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("-", "multiply")
     }
 });
 
 divide.addEventListener('click', (e) => {
     if (lastOperator === "") {
-        leftNumber = parseInt(calculationText)
-        lastOperator = "/"
-        calculationText = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("/", "equals")
     } else if (lastOperator === "+") {
-        leftNumber += parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "/"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("/", "addition")
     } else if (lastOperator === "-") {
-        leftNumber -= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "/"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("/", "subtraction")
     } else if (lastOperator === "/") {
-        leftNumber /= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "/"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("/", "divide")
     } else if (lastOperator === "x") {
-        leftNumber *= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "/"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("/", "multiply")
     }
 });
 
 multiply.addEventListener('click', (e) => {
     if (lastOperator === "") {
-        leftNumber = parseInt(calculationText)
-        lastOperator = "x"
-        calculationText = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("x", "equals")
     } else if (lastOperator === "+") {
-        leftNumber += parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "x"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("x", "addition")
     } else if (lastOperator === "-") {
-        leftNumber -= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "x"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("x", "subtraction")
     } else if (lastOperator === "/") {
-        leftNumber /= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "x"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("x", "divide")
     } else if (lastOperator === "x") {
-        leftNumber *= parseInt(calculationText)
-        calculationText = ""
-        lastOperator = "x"
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("x", "multiply")
     }
 });
 
 equals.addEventListener('click', (e) => {
     if (lastOperator === "+") {
-        leftNumber += parseInt(calculationText)
-        lastOperator = ""
-        calculationText = leftNumber
-        leftNumber = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("", "addition")
     } else if (lastOperator === "-") {
-        leftNumber -= parseInt(calculationText)
-        lastOperator = ""
-        calculationText = leftNumber
-        leftNumber = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("", "subtraction")
     } else if (lastOperator === "/") {
-        leftNumber /= parseInt(calculationText)
-        lastOperator = ""
-        calculationText = leftNumber
-        leftNumber = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("", "divide")
     } else if (lastOperator === "x") {
-        leftNumber *= parseInt(calculationText)
-        lastOperator = ""
-        calculationText = leftNumber
-        leftNumber = ""
-        display.textContent = String(leftNumber) + lastOperator + calculationText
+        displayContent("", "multiply")
     }
 });
