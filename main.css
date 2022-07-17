@@ -13,6 +13,11 @@ html body {
   height: 100%;
 }
 
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;

@@ -12,6 +12,10 @@ html{
     }
 }
 
+.hidden{
+    visibility: hidden;
+    display: none;
+}
 
 .container{
     display: flex;
@@ -32,6 +36,7 @@ html{
         margin: 0.25rem;
         height: 4rem;
         border-radius: 0.25rem;
+        
     }
     .buttons{
         display: flex;

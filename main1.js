@@ -69,71 +69,93 @@ zero.addEventListener('click', (e) => {
 
 plus.addEventListener('click', (e) => {
     if (isNaN(calculationText[calculationText.length - 1])) {
-        display.textContent = calculationText + "+"
+        calculationText = calculationText.slice(0, -1)
+        display.textContent = calculationText += "+"
     } else {
         display.textContent = calculationText += "+"
     }
     if (lastOperator === "") {
         lastOperator = "+"
-        calculationContainer = parseInt(calculationText)
-        calculation = calculationContainer
-        calculationContainer = 0
+        calculation = parseInt(calculationText)
     } else {
-        calculation += parseInt(calculationText)
-        display.textContent = String(calculation)
+        if (lastOperator === "+") {
+            calculation += parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "-") {
+            calculation -= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "/") {
+            calculation /= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "x") {
+            calculation *= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        }
     }
 });
 
 minus.addEventListener('click', (e) => {
     if (isNaN(calculationText[calculationText.length - 1])) {
-        display.textContent = calculationText + "-"
+        calculationText = calculationText.slice(0, -1)
+        display.textContent = calculationText += "-"
     } else {
         display.textContent = calculationText += "-"
     }
     if (lastOperator === "") {
         lastOperator = "-"
-        calculationContainer = parseInt(calculationText)
-        calculation = calculationContainer
-        calculationContainer = 0
+        calculation = parseInt(calculationText)
     } else {
-        calculation -= parseInt(calculationText)
-        display.textContent = String(calculation)
+        if (lastOperator === "+") {
+            calculation += parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "-") {
+            calculation -= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "/") {
+            calculation /= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        } else if (lastOperator === "x") {
+            calculation *= parseInt(calculationText)
+            display.textContent = (calculation).toString()
+        }
     }
 });
 
 divide.addEventListener('click', (e) => {
     if (isNaN(calculationText[calculationText.length - 1])) {
-        display.textContent = calculationText + "/"
+        calculationText = calculationText.slice(0, -1)
+        display.textContent = calculationText += "/"
     } else {
         display.textContent = calculationText += "/"
     }
-    if (lastOperator === "") {
-        lastOperator = "/"
-        calculationContainer = parseInt(calculationText)
-        calculation = calculationContainer
-        calculationContainer = 0
-    } else {
-        calculation /= parseInt(calculationText)
-        display.textContent = String(calculation)
-    }
+    // if (lastOperator === "") {
+    //     lastOperator = "/"
+    //     calculationContainer = parseInt(calculationText)
+    //     calculation = calculationContainer
+    //     calculationContainer = 0
+    // } else {
+    //     calculation /= parseInt(calculationText)
+    //     display.textContent = String(calculation)
+    // }
 });
 
 multiply.addEventListener('click', (e) => {
     if (isNaN(calculationText[calculationText.length - 1])) {
-        display.textContent = calculationText + "x"
+        calculationText = calculationText.slice(0, -1)
+        display.textContent = calculationText += "x"
     } else {
         display.textContent = calculationText += "x"
     }
     console.log(lastOperator);
-    if (lastOperator === "") {
-        lastOperator = "x"
-        calculationContainer = parseInt(calculationText)
-        calculation = calculationContainer
-        calculationContainer = 0
-    } else {
-        calculation *= parseInt(calculationText)
-        display.textContent = String(calculation)
-    }
+    // if (lastOperator === "") {
+    //     lastOperator = "x"
+    //     calculationContainer = parseInt(calculationText)
+    //     calculation = calculationContainer
+    //     calculationContainer = 0
+    // } else {
+    //     calculation *= parseInt(calculationText)
+    //     display.textContent = String(calculation)
+    // }
 });
 
 equals.addEventListener('click', (e) => {
