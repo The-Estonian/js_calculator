@@ -19,163 +19,126 @@ const multiply = document.getElementById('multiply');
 const equals = document.getElementById('equals');
 const reset = document.getElementById('reset');
 
-const defaultValue = 0
-let calculation = defaultValue
+
+let calculation = 0
 let lastOperator = ""
+let leftNumber = ""
 let calculationText = ""
-let calculationContainer = 0
 
 one.addEventListener('click', (e) => {
-    display.textContent = calculationText += "1"
+    calculationText += "1"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 two.addEventListener('click', (e) => {
-    display.textContent = calculationText += "2"
+    calculationText += "2"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 three.addEventListener('click', (e) => {
-    display.textContent = calculationText += "3"
+    calculationText += "3"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 four.addEventListener('click', (e) => {
-    display.textContent = calculationText += "4"
+    calculationText += "4"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 five.addEventListener('click', (e) => {
-    display.textContent = calculationText += "5"
+    calculationText += "5"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 six.addEventListener('click', (e) => {
-    display.textContent = calculationText += "6"
+    calculationText += "6"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 seven.addEventListener('click', (e) => {
-    display.textContent = calculationText += "7"
+    calculationText += "7"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 eight.addEventListener('click', (e) => {
-    display.textContent = calculationText += "8"
+    calculationText += "8"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 nine.addEventListener('click', (e) => {
-    display.textContent = calculationText += "9"
+    calculationText += "9"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 zero.addEventListener('click', (e) => {
-    display.textContent = calculationText += "0"
+    calculationText += "0"
+    display.textContent = String(leftNumber) + lastOperator + calculationText
 });
 
 
+const addNumbers = (leftNumber, rightNumber) => {
+    return leftNumber + rightNumber
+}
+
+const subtractNumbers = (leftNumber, rightNumber) => {
+    return leftNumber - rightNumber
+}
+
+const divideNumbers = (leftNumber, rightNumber) => {
+    return leftNumber / rightNumber
+}
+
+const multiplyNumbers = (leftNumber, rightNumber) => {
+    return leftNumber * rightNumber
+}
+
+const calcDisplay = (leftSide=0, operator="", rightSide="") => {
+    calculationText += rightSide
+    display.textContent = String(leftSide) + operator + calculationText
+}
+
+reset.addEventListener('click', (e) => {
+    display.textContent = "0"
+    lastOperator = ""
+    leftNumber = ""
+    calculationText = ""
+});
 
 plus.addEventListener('click', (e) => {
-    if (isNaN(calculationText[calculationText.length - 1])) {
-        calculationText = calculationText.slice(0, -1)
-        display.textContent = calculationText += "+"
-    } else {
-        display.textContent = calculationText += "+"
-    }
     if (lastOperator === "") {
+        leftNumber = parseInt(calculationText)
         lastOperator = "+"
-        calculation = parseInt(calculationText)
-    } else {
-        if (lastOperator === "+") {
-            calculation += parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "-") {
-            calculation -= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "/") {
-            calculation /= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "x") {
-            calculation *= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        }
+        calculationText = ""
+        display.textContent = String(leftNumber) + lastOperator + calculationText
+    } else if (lastOperator === "+") {
+        leftNumber += parseInt(calculationText)
+        calculationText = ""
+        lastOperator = "+"
+        display.textContent = String(leftNumber) + lastOperator + calculationText
+    } else if (lastOperator === "-") {
+        leftNumber -= parseInt(calculationText)
+        calculationText = ""
+        lastOperator = "+"
+        display.textContent = String(leftNumber) + lastOperator + calculationText
     }
 });
 
 minus.addEventListener('click', (e) => {
-    if (isNaN(calculationText[calculationText.length - 1])) {
-        calculationText = calculationText.slice(0, -1)
-        display.textContent = calculationText += "-"
-    } else {
-        display.textContent = calculationText += "-"
-    }
     if (lastOperator === "") {
+        leftNumber = parseInt(calculationText)
         lastOperator = "-"
-        calculation = parseInt(calculationText)
-    } else {
-        if (lastOperator === "+") {
-            calculation += parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "-") {
-            calculation -= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "/") {
-            calculation /= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        } else if (lastOperator === "x") {
-            calculation *= parseInt(calculationText)
-            display.textContent = (calculation).toString()
-        }
-    }
-});
-
-divide.addEventListener('click', (e) => {
-    if (isNaN(calculationText[calculationText.length - 1])) {
-        calculationText = calculationText.slice(0, -1)
-        display.textContent = calculationText += "/"
-    } else {
-        display.textContent = calculationText += "/"
-    }
-    // if (lastOperator === "") {
-    //     lastOperator = "/"
-    //     calculationContainer = parseInt(calculationText)
-    //     calculation = calculationContainer
-    //     calculationContainer = 0
-    // } else {
-    //     calculation /= parseInt(calculationText)
-    //     display.textContent = String(calculation)
-    // }
-});
-
-multiply.addEventListener('click', (e) => {
-    if (isNaN(calculationText[calculationText.length - 1])) {
-        calculationText = calculationText.slice(0, -1)
-        display.textContent = calculationText += "x"
-    } else {
-        display.textContent = calculationText += "x"
-    }
-    console.log(lastOperator);
-    // if (lastOperator === "") {
-    //     lastOperator = "x"
-    //     calculationContainer = parseInt(calculationText)
-    //     calculation = calculationContainer
-    //     calculationContainer = 0
-    // } else {
-    //     calculation *= parseInt(calculationText)
-    //     display.textContent = String(calculation)
-    // }
-});
-
-equals.addEventListener('click', (e) => {
-    console.log(calculationText);
-    if (lastOperator === "+") {
-        display.textContent = calculation += parseInt(calculationText)
+        calculationText = ""
+        display.textContent = String(leftNumber) + lastOperator + calculationText
+    } else if (lastOperator === "+") {
+        leftNumber += parseInt(calculationText)
+        calculationText = ""
+        lastOperator = "-"
+        display.textContent = String(leftNumber) + lastOperator + calculationText
     } else if (lastOperator === "-") {
-        display.textContent = calculation -= parseInt(calculationText)
-    } else if (lastOperator === "/") {
-        display.textContent = calculation /= parseInt(calculationText)
-    } else if (lastOperator === "x") {
-        // console.log(calculation);
-        // console.log(parseInt(calculationText));
-        display.textContent = calculation *= parseInt(calculationText)
+        leftNumber -= parseInt(calculationText)
+        calculationText = ""
+        lastOperator = "-"
+        display.textContent = String(leftNumber) + lastOperator + calculationText
     }
 });
 
-reset.addEventListener('click', (e) => {
-    lastOperator = ""
-    display.textContent = "0"
-    calculation = 0
-    calculationText = ""
-});
